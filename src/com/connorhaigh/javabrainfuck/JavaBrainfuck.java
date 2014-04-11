@@ -51,9 +51,9 @@ public class JavaBrainfuck
 						
 						break;
 					}
-					case "-v":
+					case "-s":
 					{
-						strict = Boolean.parseBoolean(args[++argument]);
+						strict = true;
 						
 						break;
 					}
@@ -83,7 +83,11 @@ public class JavaBrainfuck
 		{
 			//evaluate
 			System.out.println("Evaluating script...");
+			System.out.println();
+			
 			script.evaluate(System.in, System.out);
+			
+			System.out.println();
 			System.out.println("Evaluated script successfully");
 		}
 		catch (Exception ex)
