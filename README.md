@@ -1,14 +1,14 @@
 JavaVPK
 =======
 
-A Java library for reading and evaluating Brainfuck programs.
+A Java library for reading and evaluating Brainfuck scripts.
 
 Installation
 ------
 
 To install JavaBrainfuck, you can build from the repo, or alternatively download the pre-built JAR.
 
-If you're just wanting to run Brainfuck programs (or just see the library in action), a command-line application is provided.
+If you're just wanting to run Brainfuck scripts (or just see the library in action), a command-line application is provided.
 
 Initial setup
 ------

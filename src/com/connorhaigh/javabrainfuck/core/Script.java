@@ -215,6 +215,24 @@ public class Script
 	}
 	
 	/**
+	 * Sets the size of the data cache for this script.
+	 * @param dataSize the data size
+	 */
+	public void setDataSize(int dataSize)
+	{
+		this.dataSize = dataSize;
+	}
+	
+	/**
+	 * Returns the size of the data cache for this script.
+	 * @return the size of the data cache
+	 */
+	public int getDataSize()
+	{
+		return this.dataSize;
+	}
+	
+	/**
 	 * Sets if this script should be strict when evaluating (and throw exceptions when unknown tokens are found).
 	 * @param strict if this script should be strict
 	 */
