@@ -63,37 +63,49 @@ public class Script
 			{
 				case Script.INCREMENT_POINTER:
 				{
+					//check
+					if ((this.dataPointer + 1) > this.data.length)
+						throw new ScriptException("Data pointer out of bounds - above data size", token, position);
+					
 					//increment pointer
 					this.dataPointer++;
-					if (this.dataPointer > this.data.length)
-						throw new ScriptException("Data pointer out of bound - above data size", token, position);
 					
 					break;
 				}
 				case Script.DECREMENT_POINTER:
 				{
+					//check
+					if ((this.dataPointer - 1) < 0)
+						throw new ScriptException("Data pointer out of bounds - below zero", token, position);
+					
 					//decrement pointer
 					this.dataPointer--;
-					if (this.dataPointer < 0)
-						throw new ScriptException("Data pointer out of bounds - below zero", token, position);
 					
 					break;
 				}
 				case Script.INCREMENT_AT_POINTER:
 				{
-					//increment data at pointer position
-					this.data[this.dataPointer]++;
+					//check
+					if ((this.dataPointer + 1) > this.data.length)
+						throw new ScriptException("Data pointer out of bounds - above data size", token, position);
 					if (this.data[this.dataPointer] > Integer.MAX_VALUE)
 						throw new ScriptException("Memory data value out of bounds - too high", token, position);
+					
+					//increment data at pointer position
+					this.data[this.dataPointer]++;
 					
 					break;
 				}
 				case Script.DECREMENT_AT_POINTER:
 				{
-					//decrement data at pointer position
-					this.data[this.dataPointer]--;
+					//check
+					if ((this.dataPointer - 1) > this.data.length)
+						throw new ScriptException("Data pointer out of bounds - below zero", token, position);
 					if (this.data[this.dataPointer] < Integer.MIN_VALUE)
 						throw new ScriptException("Memory data value out of bounds - too low", token, position);
+					
+					//decrement data at pointer position
+					this.data[this.dataPointer]--;
 					
 					break;
 				}
