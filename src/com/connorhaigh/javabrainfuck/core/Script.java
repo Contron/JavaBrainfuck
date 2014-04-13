@@ -132,11 +132,8 @@ public class Script
 						int depth = 1;
 						while (depth > 0)
 						{
-							//move
-							position++;
-							
 							//get char
-							token = this.script[position];
+							token = this.script[++position];
 							switch (token)
 							{
 								case Script.START_LOOP:
@@ -168,11 +165,8 @@ public class Script
 						int depth = 1;
 						while (depth > 0)
 						{
-							//move
-							position--;
-							
 							//get char
-							token = this.script[position];
+							token = this.script[++position];
 							switch (token)
 							{
 								case Script.START_LOOP:
