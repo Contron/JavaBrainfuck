@@ -138,14 +138,12 @@ public class Script
 							{
 								case Script.START_LOOP:
 								{
-									//add depth
 									depth++;
 									
 									break;
 								}
 								case Script.END_LOOP:
 								{
-									//subtract depth
 									depth--;
 									
 									break;
@@ -166,19 +164,17 @@ public class Script
 						while (depth > 0)
 						{
 							//get char
-							token = this.script[++position];
+							token = this.script[--position];
 							switch (token)
 							{
 								case Script.START_LOOP:
 								{
-									//subtract depth
 									depth--;
 									
 									break;
 								}
 								case Script.END_LOOP:
 								{
-									//add depth
 									depth++;
 									
 									break;
