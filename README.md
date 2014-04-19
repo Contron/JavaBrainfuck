@@ -1,4 +1,4 @@
-JavaVPK
+JavaBrainfuck
 =======
 
 A Java library for reading and evaluating Brainfuck scripts.
