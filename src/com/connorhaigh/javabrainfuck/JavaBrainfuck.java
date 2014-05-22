@@ -64,7 +64,7 @@ public class JavaBrainfuck
 			if (input == null)
 				throw new Exception();
 		}
-		catch (Exception ex)
+		catch (Exception exception)
 		{
 			//invalid arguments
 			System.err.println("Invalid arguments specified");
@@ -86,10 +86,10 @@ public class JavaBrainfuck
 			script.evaluate(System.in, System.out);
 			System.out.println("Evaluated script successfully");
 		}
-		catch (Exception ex)
+		catch (Exception exception)
 		{
 			System.err.println();
-			System.err.println("Error during evaluation: " + ex.getMessage());
+			System.err.println("Error during evaluation: " + exception.getMessage());
 		}
 	}
 }
