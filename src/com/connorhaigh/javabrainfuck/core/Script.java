@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import com.connorhaigh.javabrainfuck.exceptions.EvaluationException;
 import com.connorhaigh.javabrainfuck.exceptions.ScriptException;
 
 public class Script 
@@ -12,9 +13,15 @@ public class Script
 	 * Create a new Brainfuck script.
 	 * @param file the script data
 	 * @param dataSize the size of the script's data
+	 * @throws ScriptException if the script could not be created
 	 */
-	public Script(char[] script, int dataSize)
+	public Script(char[] script, int dataSize) throws ScriptException
 	{
+		if (script == null)
+			throw new ScriptException("Script cannot be null");
+		if (dataSize <= 0)
+			throw new ScriptException("Cache data size is too small");
+		
 		this.script = script;
 		
 		this.data = null;
@@ -27,8 +34,9 @@ public class Script
 	/**
 	 * Create a new Brainfuck script.
 	 * @param script the script data
+	 * @throws ScriptException if the script could not be created
 	 */
-	public Script(char[] script)
+	public Script(char[] script) throws ScriptException
 	{
 		this(script, 32000);
 	}
@@ -36,8 +44,9 @@ public class Script
 	/**
 	 * Create a new Brainfuck script.
 	 * @param script the script
+	 * @throws ScriptException if the script could not be created
 	 */
-	public Script(String script)
+	public Script(String script) throws ScriptException
 	{
 		this(script.toCharArray());
 	}
@@ -47,9 +56,9 @@ public class Script
 	 * @param input the input stream to use as standard input
 	 * @param output the output stream to use as standard output
 	 * @throws IOException if the input/output streams could not be read
-	 * @throws ScriptException if the script could not be parsed
+	 * @throws EvaluationException if the script could not be evaluated
 	 */
-	public void evaluate(InputStream input, OutputStream output) throws IOException, ScriptException
+	public void evaluate(InputStream input, OutputStream output) throws IOException, EvaluationException
 	{
 		//start
 		this.data = new char[this.dataSize];
@@ -64,8 +73,8 @@ public class Script
 				case Script.INCREMENT_POINTER:
 				{
 					//check
-					if ((this.dataPointer + 1) > this.data.length)
-						throw new ScriptException("Data pointer out of bounds - above data size", token, position);
+					if (this.dataPointer >= this.data.length)
+						throw new EvaluationException("Data pointer out of bounds - above data size", token, position);
 					
 					//increment pointer
 					this.dataPointer++;
@@ -75,8 +84,8 @@ public class Script
 				case Script.DECREMENT_POINTER:
 				{
 					//check
-					if ((this.dataPointer - 1) < 0)
-						throw new ScriptException("Data pointer out of bounds - below zero", token, position);
+					if (this.dataPointer <= 0)
+						throw new EvaluationException("Data pointer out of bounds - below zero", token, position);
 					
 					//decrement pointer
 					this.dataPointer--;
@@ -86,10 +95,8 @@ public class Script
 				case Script.INCREMENT_AT_POINTER:
 				{
 					//check
-					if ((this.dataPointer + 1) > this.data.length)
-						throw new ScriptException("Data pointer out of bounds - above data size", token, position);
-					if (this.data[this.dataPointer] > Integer.MAX_VALUE)
-						throw new ScriptException("Memory data value out of bounds - too high", token, position);
+					if (this.data[this.dataPointer] >= Integer.MAX_VALUE)
+						throw new EvaluationException("Memory data value out of bounds - too high", token, position);
 					
 					//increment data at pointer position
 					this.data[this.dataPointer]++;
@@ -99,10 +106,8 @@ public class Script
 				case Script.DECREMENT_AT_POINTER:
 				{
 					//check
-					if ((this.dataPointer - 1) > this.data.length)
-						throw new ScriptException("Data pointer out of bounds - below zero", token, position);
-					if (this.data[this.dataPointer] < Integer.MIN_VALUE)
-						throw new ScriptException("Memory data value out of bounds - too low", token, position);
+					if (this.data[this.dataPointer] <= Integer.MIN_VALUE)
+						throw new EvaluationException("Memory data value out of bounds - too low", token, position);
 					
 					//decrement data at pointer position
 					this.data[this.dataPointer]--;
@@ -189,7 +194,7 @@ public class Script
 				{
 					//unknown token
 					if (this.strict)
-						throw new ScriptException("Unrecognised token", token, position);
+						throw new EvaluationException("Unrecognised token", token, position);
 				}
 			}
 		}

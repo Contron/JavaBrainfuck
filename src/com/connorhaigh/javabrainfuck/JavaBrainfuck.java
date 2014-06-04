@@ -1,6 +1,8 @@
 package com.connorhaigh.javabrainfuck;
 
 import com.connorhaigh.javabrainfuck.core.Script;
+import com.connorhaigh.javabrainfuck.exceptions.EvaluationException;
+import com.connorhaigh.javabrainfuck.exceptions.ScriptException;
 
 public class JavaBrainfuck 
 {
@@ -72,24 +74,33 @@ public class JavaBrainfuck
 			return;
 		}
 		
-		//create script
-		Script script = new Script(input);
-		if (dataSize > 0)
-			script.setDataSize(dataSize);
-		if (strict)
-			script.setStrict(strict);
-		
 		try
 		{
+			//create script
+			System.out.println("Creating script...");
+			Script script = new Script(input);
+			if (dataSize > 0)
+				script.setDataSize(dataSize);
+			if (strict)
+				script.setStrict(strict);
+			
 			//evaluate
 			System.out.println("Evaluating script...");
+			System.err.println();
 			script.evaluate(System.in, System.out);
 			System.out.println("Evaluated script successfully");
 		}
+		catch (ScriptException exception)
+		{
+			System.err.println("Error during creation: " + exception.getMessage());
+		}
+		catch (EvaluationException exception)
+		{
+			System.err.println("Error during evaluation: " + exception.getMessage());
+		}
 		catch (Exception exception)
 		{
-			System.err.println();
-			System.err.println("Error during evaluation: " + exception.getMessage());
+			System.err.println("General error: " + exception.getMessage());
 		}
 	}
 }
