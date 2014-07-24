@@ -22,9 +22,9 @@ public class JavaBrainfuck
 		{
 			//usage
 			System.out.println("Usage:");
-			System.out.println("-i\tSpecify the input script");
-			System.out.println("-d\tSpecify the data cache size");
-			System.out.println("-s\tSpecify strict evaluation");
+			System.out.println("\t-i\tSpecify the input script");
+			System.out.println("\t-d\tSpecify the data cache size");
+			System.out.println("\t-s\tSpecify strict evaluation");
 			
 			return;
 		}
@@ -88,6 +88,7 @@ public class JavaBrainfuck
 			System.out.println("Evaluating script...");
 			System.err.println();
 			script.evaluate(System.in, System.out);
+			System.err.println();
 			System.out.println("Evaluated script successfully");
 		}
 		catch (ScriptException exception)

@@ -73,7 +73,7 @@ public class Script
 				case Script.INCREMENT_POINTER:
 				{
 					//check
-					if (this.dataPointer >= this.data.length)
+					if ((this.dataPointer + 1) >= this.data.length)
 						throw new EvaluationException("Data pointer out of bounds - above data size", token, position);
 					
 					//increment pointer
@@ -84,7 +84,7 @@ public class Script
 				case Script.DECREMENT_POINTER:
 				{
 					//check
-					if (this.dataPointer <= 0)
+					if ((this.dataPointer - 1) < 0)
 						throw new EvaluationException("Data pointer out of bounds - below zero", token, position);
 					
 					//decrement pointer
@@ -194,7 +194,7 @@ public class Script
 				{
 					//unknown token
 					if (this.strict)
-						throw new EvaluationException("Unrecognised token", token, position);
+						throw new EvaluationException("Syntax error - unrecognised token", token, position);
 				}
 			}
 		}
