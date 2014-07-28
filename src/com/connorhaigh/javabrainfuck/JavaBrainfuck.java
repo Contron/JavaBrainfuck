@@ -17,14 +17,13 @@ public class JavaBrainfuck
 		System.out.println("(C) Connor Haigh 2014");
 		System.out.println();
 		
-		//check for arguments
 		if (args.length <= 0)
 		{
 			//usage
 			System.out.println("Usage:");
-			System.out.println("\t-i\tSpecify the input script");
-			System.out.println("\t-d\tSpecify the data cache size");
-			System.out.println("\t-s\tSpecify strict evaluation");
+			System.out.println("\t" + JavaBrainfuck.INPUT_OPTION + "\t\tSpecify the input script");
+			System.out.println("\t" + JavaBrainfuck.SIZE_OPTION + "\t\tSpecify the data cache size");
+			System.out.println("\t" + JavaBrainfuck.STRICT_OPTION + "\t\tSpecify strict evaluation");
 			
 			return;
 		}
@@ -41,19 +40,19 @@ public class JavaBrainfuck
 			{
 				switch (args[argument])
 				{
-					case "-i":
+					case JavaBrainfuck.INPUT_OPTION:
 					{
 						input = args[++argument];
 						
 						break;
 					}
-					case "-d":
+					case JavaBrainfuck.SIZE_OPTION:
 					{
 						dataSize = Integer.parseInt(args[++argument]);
 						
 						break;
 					}
-					case "-s":
+					case JavaBrainfuck.STRICT_OPTION:
 					{
 						strict = true;
 						
@@ -87,21 +86,30 @@ public class JavaBrainfuck
 			//evaluate
 			System.out.println("Evaluating script...");
 			System.err.println();
+			
 			script.evaluate(System.in, System.out);
+			
 			System.err.println();
 			System.out.println("Evaluated script successfully");
 		}
 		catch (ScriptException exception)
 		{
+			//creation exception
 			System.err.println("Error during creation: " + exception.getMessage());
 		}
 		catch (EvaluationException exception)
 		{
+			//evaluation exception
 			System.err.println("Error during evaluation: " + exception.getMessage());
 		}
 		catch (Exception exception)
 		{
+			//general exception
 			System.err.println("General error: " + exception.getMessage());
 		}
 	}
+	
+	public static final String INPUT_OPTION = "-script";
+	public static final String SIZE_OPTION = "-size";
+	public static final String STRICT_OPTION = "-strict";
 }
