@@ -23,7 +23,7 @@ public class JavaBrainfuck
 			System.out.println("Usage:");
 			System.out.println("\t" + JavaBrainfuck.INPUT_OPTION + "\t\tSpecify the input script");
 			System.out.println("\t" + JavaBrainfuck.SIZE_OPTION + "\t\tSpecify the data cache size");
-			System.out.println("\t" + JavaBrainfuck.STRICT_OPTION + "\t\tSpecify strict evaluation");
+			System.out.println("\t" + JavaBrainfuck.STRICT_OPTION + "\t\tToggle strict evaluation");
 			
 			return;
 		}
