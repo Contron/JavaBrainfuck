@@ -10,7 +10,7 @@ import com.connorhaigh.javabrainfuck.exceptions.ScriptException;
 public class Script 
 {
 	/**
-	 * Create a new Brainfuck script.
+	 * Creates a new Brainfuck script.
 	 * @param file the script data
 	 * @param dataSize the size of the script's data
 	 * @throws ScriptException if the script could not be created
@@ -32,7 +32,7 @@ public class Script
 	}
 	
 	/**
-	 * Create a new Brainfuck script.
+	 * Creates a new Brainfuck script.
 	 * @param script the script data
 	 * @throws ScriptException if the script could not be created
 	 */
@@ -42,7 +42,7 @@ public class Script
 	}
 	
 	/**
-	 * Create a new Brainfuck script.
+	 * Creates a new Brainfuck script.
 	 * @param script the script
 	 * @throws ScriptException if the script could not be created
 	 */
@@ -52,7 +52,7 @@ public class Script
 	}
 	
 	/**
-	 * Interpret and evaluate this script.
+	 * Interprets and evaluates this script.
 	 * @param input the input stream to use as standard input
 	 * @param output the output stream to use as standard output
 	 * @throws IOException if the input/output streams could not be read

@@ -3,7 +3,7 @@ package com.connorhaigh.javabrainfuck.exceptions;
 public class EvaluationException extends Exception
 {
 	/**
-	 * Create a new evaluation exception with details about the error.
+	 * Creates a new evaluation exception with details about the error.
 	 * @param message the message
 	 * @param character the offending character
 	 * @param position the index of said character
@@ -14,7 +14,7 @@ public class EvaluationException extends Exception
 	}
 	
 	/**
-	 * Create a new evaluation exception.
+	 * Creates a new evaluation exception.
 	 * @param message the message
 	 */
 	public EvaluationException(String message)
